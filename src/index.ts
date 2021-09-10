@@ -1,3 +1,11 @@
-import Settings from '../settings';
+import settings from '../settings';
+import GitLabHelper from './libs/GitLabHelper';
 
-console.log(`Run with ${JSON.stringify(Settings)}`)
+
+async function main(){
+  const gitlab = new GitLabHelper(settings).verifySettings();
+
+}
+
+console.log(`Run with ${JSON.stringify(settings)}`);
+main();
