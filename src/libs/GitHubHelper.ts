@@ -2,6 +2,12 @@ import Settings from '../interfaces/Settings';
 import RemoteGitHelper from './RemoteGitHelper';
 import fetch from 'isomorphic-fetch';
 
+interface IGithubRepoInfo {
+  username?: string;
+  password?: string;
+  repoLocation?: string; // e.g. org/repoName
+}
+
 export default class GitHubHelper extends RemoteGitHelper {
 
   constructor(protected _settings: Settings){
@@ -12,5 +18,9 @@ export default class GitHubHelper extends RemoteGitHelper {
 
   }
 
+  public static composePrivateRepoURL(repoInfo: IGithubRepoInfo) {
+    const { repoLocation, username, password } = repoInfo;
+    return `https://${username}:${password}@github.com/${repoLocation}.git`;
+  }
 }
 

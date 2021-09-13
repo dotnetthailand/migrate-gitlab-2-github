@@ -6,6 +6,7 @@
   "license": "MIT",
   "private": false,
   "devDependencies": {
+    "@types/common-tags": "^1.8.1",
     "@types/isomorphic-fetch": "^0.0.35",
     "@types/node": "^16.9.0",
     "ts-node": "^10.2.1",
@@ -19,6 +20,7 @@
     "start": "ts-node ./src/index.ts"
   },
   "dependencies": {
+    "common-tags": "^1.8.0",
     "isomorphic-fetch": "^3.0.0",
     "promisify-child-process": "^4.1.1"
   }

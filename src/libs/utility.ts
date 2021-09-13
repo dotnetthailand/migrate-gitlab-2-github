@@ -1,8 +1,3 @@
-import { promisify } from 'util';
-
-// https://medium.com/stackfame/how-to-run-shell-script-file-or-command-using-nodejs-b9f2455cb6b7
-// const exec = promisify(require('child_process').exec);
-// https://stackoverflow.com/questions/10232192/exec-display-stdout-live
 const { spawn } = require('promisify-child-process');
 
 export async function run(command: string) {

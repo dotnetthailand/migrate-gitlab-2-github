@@ -2,10 +2,10 @@ import Settings from '../interfaces/Settings';
 import RemoteGitHelper from './RemoteGitHelper';
 import fetch from 'isomorphic-fetch';
 
-interface IRepoInfo {
-  groupName: string;
-  subGroupName: string;
-  repoName: string;
+export interface IGitLabRepoInfo {
+  groupName?: string;
+  subGroupName?: string;
+  repoName?: string;
   username?: string;
   password?: string;
 }
@@ -53,12 +53,12 @@ export default class GitLabHelper extends RemoteGitHelper {
 
   }
 
-  public static composePrivateRepoURL(repoInfo: IRepoInfo) {
+  public static composePrivateRepoURL(repoInfo: IGitLabRepoInfo) {
     const { groupName, subGroupName, repoName, username, password } = repoInfo;
     return `https://${username}:${password}@gitlab.com/${groupName}/${subGroupName}/${repoName}.git`;
   }
 
-  public static composeRepoURL(repoInfo: IRepoInfo) {
+  public static composeRepoURL(repoInfo: IGitLabRepoInfo) {
     const { groupName, subGroupName, repoName} = repoInfo;
     return `https://gitlab.com/${groupName}/${subGroupName}/${repoName}`;
   }
