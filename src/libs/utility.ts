@@ -1,11 +1,11 @@
 const { spawn } = require('promisify-child-process');
 
-export async function run(command: string) {
+export async function run(command: string, slient = false) {
   try {
     const commandSplits = command.split(' ');
     const spawnCommand = commandSplits[0];
     const spawnArgs = commandSplits.slice(1);
-    console.debug(`Executing... ${command}`);
+    if(!slient) console.debug(`Executing... ${command}`);
     const childProcess = spawn(spawnCommand , spawnArgs, {encoding: 'utf8', maxBuffer: 200 * 1024} );
 
     childProcess.stdout.on('data', function (data: any) {
@@ -17,7 +17,7 @@ export async function run(command: string) {
     });
 
     childProcess.on('exit', function (code: any) {
-      console.log('child process exited with code ' + code);
+      if(!slient) console.log('child process exited with code ' + code);
     });
 
     const { stdout, stderr, code } = await childProcess;

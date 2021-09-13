@@ -22,5 +22,10 @@ export default class GitHubHelper extends RemoteGitHelper {
     const { repoLocation, username, password } = repoInfo;
     return `https://${username}:${password}@github.com/${repoLocation}.git`;
   }
+
+  public static composeRepoURL(repoInfo: IGithubRepoInfo) {
+    const { repoLocation, username, password } = repoInfo;
+    return `https://github.com/${repoLocation}.git`;
+  }
 }
 
