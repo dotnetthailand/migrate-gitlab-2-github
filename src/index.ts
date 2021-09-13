@@ -40,8 +40,11 @@ const generateBashScript = ({
 )
 
 async function main(){
+  // Mock mode is not affect with remote repo.
+  const MOCK_MODE = true;
+
   const gitlab = new GitLabHelper(settings)
-  await gitlab.verifySettings();
+  await gitlab.verifySettings({ mockMode: MOCK_MODE });
   const { groupName, username, password } = settings.gitlab;
   const { repositories } = settings;
   const { github } = settings;
@@ -77,7 +80,8 @@ async function main(){
         }),
         defaultUnicode);
       await run(`chmod a+x ${path.resolve(tmpDir, generateBashScriptFilename(subGroupName, repoName))}`);
-      await run(path.resolve(tmpDir, generateBashScriptFilename(subGroupName, repoName)));;
+      if(!MOCK_MODE)
+        await run(path.resolve(tmpDir, generateBashScriptFilename(subGroupName, repoName)));;
     }
   }
 }

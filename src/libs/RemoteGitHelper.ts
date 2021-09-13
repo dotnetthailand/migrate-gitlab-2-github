@@ -8,6 +8,4 @@ export default class RemoteGitHelper {
     this._debug = this._settings.debug || false;
   }
 
-  async verifySettings() {}
-
 }

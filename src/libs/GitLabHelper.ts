@@ -17,7 +17,7 @@ export default class GitLabHelper extends RemoteGitHelper {
     super(_settings);
   }
 
-  async verifySettings() {
+  async verifySettings({ mockMode = false } = {}) {
     const { groupName, username, password } = this._settings.gitlab;
     const { repositories } = this._settings;
     const workers = [];
@@ -32,19 +32,26 @@ export default class GitLabHelper extends RemoteGitHelper {
             username,
             password
           });
-        workers.push(fetch(targetURL));
-        // this.privateRepoURLs.push(targetURL);
+        if(!mockMode){
+          workers.push(fetch(targetURL));
+        }
         urls.push(GitLabHelper.composeRepoURL({ groupName, subGroupName, repoName}));
         }
       }
 
-      const responses = await Promise.all(workers);
-      for(const index in responses){
-         if(responses[index].status === 200){
-           console.log(`${urls[index]} [OK]`);
-         } else {
-          console.log(`${urls[index]} [FAILED]`);
-         }
+      if(!mockMode){
+        const responses = await Promise.all(workers);
+        for(const index in responses){
+          if(responses[index].status === 200){
+            console.log(`${urls[index]} [OK]`);
+          } else {
+            console.log(`${urls[index]} [FAILED]`);
+          }
+        }
+      } else {
+        for(const url of urls){
+          console.log(url);
+        }
       }
 
     } catch (error) {
