@@ -9,9 +9,13 @@ export default interface Settings {
 
 export interface GitlabSettings {
   groupName: string;
+  username: string;
+  password: string;
 }
 
 export interface GithubSettings {
   orgName: string;
+  username: string;
+  password: string;
 }
 

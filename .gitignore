@@ -12,3 +12,6 @@ dist
 
 # settings.js
 settings.ts
+
+# tmp
+tmp
