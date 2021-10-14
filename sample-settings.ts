@@ -2,10 +2,14 @@ import Settings from './src/interfaces/Settings';
 
 export default {
   gitlab: {
-    groupName: 'Source groupName'
+    groupName: 'Source groupName',
+    username: '',
+    password: ''
   },
   github: {
-    orgName: 'Target Org Name'
+    orgName: 'Target Org Name',
+    username: 'my-',
+    password: ''
   },
   repositories: {
     'subgroup1': ['repo1'],
